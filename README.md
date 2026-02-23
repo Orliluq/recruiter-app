@@ -2,6 +2,10 @@
 
 🎯 Una aplicación completa de reclutamiento construida con React, TypeScript y tecnologías modernas para gestionar candidatos, empleos y procesos de selección.
 
+![](src/assets/img.jpg)
+
+![](src/assets/img-d.jpg)
+
 ## ✨ Características Principales
 
 ### 👤 Gestión de Candidatos
