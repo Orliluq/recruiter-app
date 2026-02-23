@@ -107,10 +107,10 @@ recruitwise-os/
 ### ⚡ Instalación
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/recruitwise-os.git
+git clone https://github.com/tu-usuario/recruiter-app.git
 
 # 2. Navegar al proyecto
-cd recruitwise-os
+cd recruiter-app
 
 # 3. Instalar dependencias
 npm install
@@ -398,7 +398,7 @@ VITE_APP_VERSION=1.0.0
 
 ## 📄 Licencia
 
-Este proyecto está licenciado bajo **MIT License** - ver archivo [LICENSE](LICENSE) para detalles completos.
+Este proyecto está licenciado bajo **MIT License** - ver archivo [MIT](LICENSE) para detalles completos.
 
 ---
 
