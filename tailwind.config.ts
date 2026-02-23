@@ -7,9 +7,19 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+        "2xl": "6rem",
+      },
       screens: {
-        "2xl": "1400px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
       },
     },
     extend: {
@@ -97,8 +107,8 @@ export default {
           to: { opacity: "1" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 12px hsl(174 72% 46% / 0.1)" },
-          "50%": { boxShadow: "0 0 24px hsl(174 72% 46% / 0.25)" },
+          "0%, 100%": { boxShadow: "0 0 12px hsla(212, 52%, 53%, 0.15)" },
+          "50%": { boxShadow: "0 0 24px hsla(194, 35%, 59%, 0.527)" },
         },
       },
       animation: {

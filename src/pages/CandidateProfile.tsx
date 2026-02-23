@@ -12,7 +12,7 @@ export default function CandidateProfile() {
   if (!candidate) {
     return (
       <AppLayout>
-        <div className="text-center py-20 text-muted-foreground">Candidate not found</div>
+        <div className="text-center py-20 text-muted-foreground">Candidato no encontrado</div>
       </AppLayout>
     );
   }
@@ -23,7 +23,7 @@ export default function CandidateProfile() {
     <AppLayout>
       <div className="space-y-6 animate-fade-in max-w-4xl">
         <Link to="/candidates" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-          <ArrowLeft className="h-4 w-4" /> Back to candidates
+          <ArrowLeft className="h-4 w-4" /> Volver a candidatos
         </Link>
 
         {/* Header */}
@@ -58,7 +58,7 @@ export default function CandidateProfile() {
           <div className="md:col-span-2 space-y-6">
             {/* Skills */}
             <div className="glass-card p-5">
-              <h2 className="font-semibold text-sm mb-3">Skills</h2>
+              <h2 className="font-semibold text-sm mb-3">Habilidades</h2>
               <div className="flex flex-wrap gap-2">
                 {candidate.skills.map((skill) => (
                   <span key={skill} className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground">{skill}</span>
@@ -68,14 +68,14 @@ export default function CandidateProfile() {
 
             {/* Interviews */}
             <div className="glass-card p-5">
-              <h2 className="font-semibold text-sm mb-3">Interviews</h2>
+              <h2 className="font-semibold text-sm mb-3">Entrevistas</h2>
               {interviews.length > 0 ? (
                 <div className="space-y-3">
                   {interviews.map((interview) => (
                     <div key={interview.id} className="flex items-center gap-3 p-3 rounded-lg bg-secondary/30">
                       <Calendar className="h-4 w-4 text-primary shrink-0" />
                       <div className="flex-1">
-                        <p className="text-sm font-medium capitalize">{interview.type} Interview</p>
+                        <p className="text-sm font-medium capitalize">{interview.type} Entrevista</p>
                         <p className="text-xs text-muted-foreground">
                           {interview.date} at {interview.time} · {interview.duration}min · {interview.interviewers.join(", ")}
                         </p>
@@ -91,7 +91,7 @@ export default function CandidateProfile() {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-muted-foreground">No interviews scheduled</p>
+                <p className="text-sm text-muted-foreground">No hay entrevistas programadas</p>
               )}
             </div>
           </div>
@@ -101,21 +101,21 @@ export default function CandidateProfile() {
             {candidate.salary && (
               <div className="glass-card p-4">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
-                  <DollarSign className="h-3 w-3" /> Expected Salary
+                  <DollarSign className="h-3 w-3" /> Salario Esperado
                 </div>
                 <p className="text-sm font-medium">{candidate.salary}</p>
               </div>
             )}
             <div className="glass-card p-4">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
-                <Briefcase className="h-3 w-3" /> Applied For
+                <Briefcase className="h-3 w-3" /> Solicitado
               </div>
-              <Link to={`/jobs/${candidate.jobId}`} className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
-                View Job <ExternalLink className="h-3 w-3" />
+              <Link to={`/jobs/${candidate.jobId}`} className="text-sm font-medium text-primary hover:text-primary/80 flex items-center gap-1">
+                Ver Empleo <ExternalLink className="h-3 w-3" />
               </Link>
             </div>
             <div className="glass-card p-4">
-              <div className="text-xs text-muted-foreground mb-1">Applied</div>
+              <div className="text-xs text-muted-foreground mb-1">Aplicado</div>
               <p className="text-sm font-medium">{candidate.appliedAt}</p>
             </div>
           </div>

@@ -53,13 +53,68 @@
     --info: 210 80% 55%;
     --info-foreground: 225 30% 6%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(174 72% 46%), hsl(190 80% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(199, 65%, 75%), hsl(190 80% 50%));
     --gradient-card: linear-gradient(180deg, hsl(225 28% 11%), hsl(225 28% 9%));
     --gradient-sidebar: linear-gradient(180deg, hsl(225 30% 6%), hsl(225 30% 4%));
 
     --shadow-card: 0 1px 3px hsl(225 30% 3% / 0.4), 0 4px 12px hsl(225 30% 3% / 0.2);
     --shadow-elevated: 0 4px 16px hsl(225 30% 3% / 0.5), 0 12px 40px hsl(225 30% 3% / 0.3);
-    --shadow-glow: 0 0 20px hsl(174 72% 46% / 0.15);
+    --shadow-glow: 0 0 20px hsla(212, 52%, 53%, 0.15)5);
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 174 72% 46%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 174 50% 20%;
+    --accent-foreground: 174 72% 60%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 174 72% 46%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 215.4 16.3% 46.9%;
+    --sidebar-primary: 174 72% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222.2 84% 4.9%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 174 72% 46%;
+
+    /* Custom tokens */
+    --success: 152 60% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 100%;
+    --info: 210 80% 55%;
+    --info-foreground: 0 0% 100%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(199, 65%, 75%), hsl(190 80% 50%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    --gradient-sidebar: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 96%));
+
+    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.1), 0 4px 12px hsl(0 0% 0% / 0.05);
+    --shadow-elevated: 0 4px 16px hsl(0 0% 0% / 0.1), 0 12px 40px hsl(0 0% 0% / 0.08);
+    --shadow-glow: 0 0 20px hsla(194, 35%, 59%, 0.527);
   }
 }
 
@@ -107,15 +162,49 @@
   }
 
   .sidebar-item {
-    @apply flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors duration-150;
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150;
   }
 
   .sidebar-item-active {
-    @apply bg-accent text-accent-foreground;
+    @apply bg-accent text-accent-foreground shadow-sm;
   }
 
   .sidebar-item-inactive {
     @apply text-muted-foreground hover:text-foreground hover:bg-secondary/50;
+  }
+
+  /* Responsive adjustments for sidebar */
+  .sidebar-item {
+    transition: all 0.15s ease-in-out;
+  }
+
+  .sidebar-item:hover {
+    transform: translateX(2px);
+  }
+
+  /* Icon adjustments */
+  .sidebar-item svg {
+    transition: all 0.15s ease-in-out;
+  }
+
+  /* Collapsed state adjustments */
+  .w-16 .sidebar-item {
+    @apply px-2 py-2 gap-2;
+  }
+
+  .w-16 .sidebar-item svg {
+    @apply h-4 w-4;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 640px) {
+    .sidebar-item {
+      @apply px-2 py-2 gap-2;
+    }
+    
+    .sidebar-item svg {
+      @apply h-4 w-4;
+    }
   }
 
   .badge-stage {

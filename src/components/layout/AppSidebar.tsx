@@ -10,13 +10,14 @@ import {
   ChevronRight,
   Zap,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
   { label: "Dashboard", path: "/", icon: LayoutDashboard },
   { label: "Pipeline", path: "/pipeline", icon: Kanban },
-  { label: "Candidates", path: "/candidates", icon: Users },
-  { label: "Jobs", path: "/jobs", icon: Briefcase },
-  { label: "Calendar", path: "/calendar", icon: Calendar },
+  { label: "Candidatos", path: "/candidates", icon: Users },
+  { label: "Empleos", path: "/jobs", icon: Briefcase },
+  { label: "Calendario", path: "/calendar", icon: Calendar },
 ];
 
 export function AppSidebar() {
@@ -32,12 +33,12 @@ export function AppSidebar() {
     >
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-4 h-14 border-b border-sidebar-border shrink-0">
-        <div className="h-7 w-7 rounded-md bg-primary flex items-center justify-center shrink-0">
-          <Zap className="h-4 w-4 text-primary-foreground" />
+        <div className="flex items-center justify-center">
+         <img src="/logo.png" alt="Logo" className="h-10 w-10 object-contain" />
         </div>
         {!collapsed && (
           <span className="font-semibold text-foreground text-sm tracking-tight">
-            Recruiter OS
+            Recruiter App
           </span>
         )}
       </div>
@@ -50,23 +51,32 @@ export function AppSidebar() {
             <NavLink
               key={item.path}
               to={item.path}
-              className={`sidebar-item ${
+              className={`sidebar-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                 active ? "sidebar-item-active" : "sidebar-item-inactive"
               }`}
             >
-              <item.icon className="h-4 w-4 shrink-0" />
-              {!collapsed && <span>{item.label}</span>}
+              <item.icon className="h-4 w-4 flex-shrink-0 items-center justify-center" />
+              {!collapsed && <span className="text-sm font-medium items-center justify-center">{item.label}</span>}
             </NavLink>
           );
         })}
       </nav>
+
+      {/* Theme toggle */}
+      <div className="p-2 border-t items-center justify-center border-sidebar-border">
+        <ThemeToggle />
+      </div>
 
       {/* Collapse toggle */}
       <button
         onClick={() => setCollapsed(!collapsed)}
         className="flex items-center justify-center h-10 border-t border-sidebar-border text-muted-foreground hover:text-foreground transition-colors"
       >
-        {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+        {collapsed ? (
+          <ChevronRight className="h-4 w-4 flex-shrink-0" />
+        ) : (
+          <ChevronLeft className="h-4 w-4 flex-shrink-0" />
+        )}
       </button>
     </aside>
   );

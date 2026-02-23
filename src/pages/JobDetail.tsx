@@ -12,23 +12,23 @@ export default function JobDetail() {
   if (!job) {
     return (
       <AppLayout>
-        <div className="text-center py-20 text-muted-foreground">Job not found</div>
+        <div className="text-center py-20 text-muted-foreground">Vacante no encontrada</div>
       </AppLayout>
     );
   }
 
   const statusColor: Record<string, string> = {
-    open: "bg-success/20 text-success",
-    paused: "bg-warning/20 text-warning",
-    closed: "bg-muted text-muted-foreground",
-    draft: "bg-secondary text-secondary-foreground",
+    abierta: "bg-success/20 text-success",
+    pausada: "bg-warning/20 text-warning",
+    cerrada: "bg-muted text-muted-foreground",
+    eliminado: "bg-secondary text-secondary-foreground",
   };
 
   return (
     <AppLayout>
       <div className="space-y-6 animate-fade-in max-w-4xl">
         <Link to="/jobs" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-          <ArrowLeft className="h-4 w-4" /> Back to jobs
+          <ArrowLeft className="h-4 w-4" /> Volver a vacantes
         </Link>
 
         <div className="glass-card p-6">
@@ -42,14 +42,14 @@ export default function JobDetail() {
           <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> {job.location}</span>
             <span className="flex items-center gap-1.5"><DollarSign className="h-3.5 w-3.5" /> {job.salary}</span>
-            <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /> {candidates.length} candidates</span>
-            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> Created {job.createdAt}</span>
+            <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /> {candidates.length} candidatos</span>
+            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> Creada {job.createdAt}</span>
           </div>
         </div>
 
         {/* Candidates for this job */}
         <div className="glass-card p-5">
-          <h2 className="font-semibold text-sm mb-4">Candidates ({candidates.length})</h2>
+          <h2 className="font-semibold text-sm mb-4">Candidatos ({candidates.length})</h2>
           {candidates.length > 0 ? (
             <div className="space-y-2">
               {candidates.map((c) => {
@@ -67,7 +67,7 @@ export default function JobDetail() {
                       <p className="text-sm font-medium truncate">{c.name}</p>
                       <p className="text-xs text-muted-foreground truncate">{c.title} @ {c.company}</p>
                     </div>
-                    <div className="flex gap-0.5 hidden sm:flex">
+                    <div className="gap-0.5 hidden sm:flex">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className={`h-3 w-3 ${i < c.rating ? "text-warning fill-warning" : "text-muted-foreground/20"}`} />
                       ))}
@@ -78,7 +78,7 @@ export default function JobDetail() {
               })}
             </div>
           ) : (
-            <p className="text-sm text-muted-foreground">No candidates yet</p>
+            <p className="text-sm text-muted-foreground">No hay candidatos aún</p>
           )}
         </div>
       </div>

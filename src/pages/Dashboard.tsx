@@ -15,12 +15,12 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { Link } from "react-router-dom";
 
 const statCards = [
-  { label: "Open Roles", value: mockStats.openRoles, icon: Briefcase, change: "+2" },
-  { label: "Active Candidates", value: mockStats.activeCandidates, icon: Users, change: "+14" },
-  { label: "Interviews This Week", value: mockStats.interviewsThisWeek, icon: Calendar, change: "+5" },
-  { label: "Hired This Month", value: mockStats.hiredThisMonth, icon: TrendingUp, change: "+2" },
-  { label: "Avg. Time to Hire", value: `${mockStats.avgTimeToHire}d`, icon: Clock, change: "-3d" },
-  { label: "Pipeline Conversion", value: `${mockStats.pipelineConversion}%`, icon: Target, change: "+1.2%" },
+  { label: "Vacantes abiertas", value: mockStats.openRoles, icon: Briefcase, change: "+2" },
+  { label: "Candidatos activos", value: mockStats.activeCandidates, icon: Users, change: "+14" },
+  { label: "Entrevistas esta semana", value: mockStats.interviewsThisWeek, icon: Calendar, change: "+5" },
+  { label: "Contratados este mes", value: mockStats.hiredThisMonth, icon: TrendingUp, change: "+2" },
+  { label: "Tiempo promedio de contratación", value: `${mockStats.avgTimeToHire}d`, icon: Clock, change: "-3d" },
+  { label: "Conversión de pipeline", value: `${mockStats.pipelineConversion}%`, icon: Target, change: "+1.2%" },
 ];
 
 const interviewTypeIcon = { phone: Phone, video: Video, onsite: Briefcase, technical: Code };
@@ -33,16 +33,16 @@ export default function Dashboard() {
       <div className="space-y-8 animate-fade-in">
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-          <p className="text-muted-foreground text-sm mt-1">Welcome back. Here's your recruiting overview.</p>
+          <h1 className="text-2xl font-semibold tracking-tight">Panel de Control</h1>
+          <p className="text-muted-foreground text-sm mt-1">Bienvenido. Aquí está tu visión de reclutamiento.</p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {statCards.map((s) => (
             <div key={s.label} className="stat-card">
               <div className="flex items-center justify-between mb-3">
-                <s.icon className="h-4 w-4 text-muted-foreground" />
+                <s.icon className="h-4 w-4 text-primary hover:text-primary/80 transition-colors" />
                 <span className="text-xs text-success font-medium">{s.change}</span>
               </div>
               <div className="text-2xl font-bold">{s.value}</div>
@@ -51,13 +51,13 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Upcoming Interviews */}
           <div className="lg:col-span-3 glass-card p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-semibold text-sm">Upcoming Interviews</h2>
-              <Link to="/calendar" className="text-xs text-primary hover:underline flex items-center gap-1">
-                View all <ArrowUpRight className="h-3 w-3" />
+              <h2 className="font-semibold text-sm">Próximas Entrevistas</h2>
+              <Link to="/calendar" className="text-xs text-primary hover:text-primary/80 flex items-center gap-1">
+                Ver todas <ArrowUpRight className="h-3 w-3" />
               </Link>
             </div>
             <div className="space-y-3">
@@ -88,7 +88,7 @@ export default function Dashboard() {
 
           {/* Recent Activity */}
           <div className="lg:col-span-2 glass-card p-5">
-            <h2 className="font-semibold text-sm mb-4">Recent Activity</h2>
+            <h2 className="font-semibold text-sm mb-4">Actividad reciente</h2>
             <div className="space-y-3">
               {recentActivity.map((a) => (
                 <div key={a.id} className="flex gap-3">
@@ -106,9 +106,9 @@ export default function Dashboard() {
         {/* Open Roles */}
         <div className="glass-card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-sm">Open Roles</h2>
-            <Link to="/jobs" className="text-xs text-primary hover:underline flex items-center gap-1">
-              View all <ArrowUpRight className="h-3 w-3" />
+            <h2 className="font-semibold text-sm">Vacantes Abiertas</h2>
+            <Link to="/jobs" className="text-xs text-primary hover:text-primary/80 flex items-center gap-1">
+              Ver todas <ArrowUpRight className="h-3 w-3" />
             </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">

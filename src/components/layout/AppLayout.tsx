@@ -9,6 +9,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
         <div className="p-6 lg:p-8 max-w-[1440px] mx-auto">
           {children}
         </div>
+        <footer className="p-6 lg:p-8 max-w-[1440px] mx-auto">
+          <p className="text-xs text-center">&copy; {new Date().getFullYear()} Recruiter App. Todos los derechos reservados. by Orli Dun</p>
+        </footer>
       </main>
     </div>
   );
