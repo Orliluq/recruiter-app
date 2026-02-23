@@ -28,5 +28,5 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
-config.toml
+/supabase/config.toml
 /data-recruiter/*
