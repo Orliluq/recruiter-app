@@ -18,19 +18,7 @@
     "url": "https://recruiter-iota.vercel.app/"
   },
   "keywords": [
-    "recruiter",
-    "recruitment",
-    "hiring",
-    "candidates",
-    "jobs",
-    "react",
-    "typescript",
-    "tailwind",
-    "hr",
-    "talent",
-    "pipeline",
-    "applicant-tracking"
-  ],
+    ""],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

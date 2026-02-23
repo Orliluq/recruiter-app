@@ -94,17 +94,24 @@ recruitwise-os/
 ├── tsconfig.json         # Configuración TypeScript
 ├── vite.config.ts        # Configuración Vite
 ├── tailwind.config.js    # Configuración Tailwind
+├── Dockerfile            # Imagen Docker para producción
+├── Dockerfile.dev        # Imagen Docker para desarrollo
+├── docker-compose.yml    # Orquestación de servicios
+├── nginx.conf            # Configuración Nginx para producción
+├── .dockerignore         # Exclusiones Docker
+├── DOCKER_GUIDE.md       # Guía completa de Docker
 └── README.md             # Este archivo
 ```
 
 ## 🚀 Instalación y Configuración
 
 ### 📋 Prerrequisitos
-- **🟢 Node.js** 18+ 
+- **🟢 Node.js** 20+ (requerido por Supabase)
 - **📦 npm** o **🧶 yarn**
 - **🔧 Git** para control de versiones
+- **🐳 Docker Desktop** (opcional, para contenerización)
 
-### ⚡ Instalación
+### ⚡ Instalación Local
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/tu-usuario/recruiter-app.git
@@ -115,8 +122,29 @@ cd recruiter-app
 # 3. Instalar dependencias
 npm install
 
-# 4. Iniciar servidor de desarrollo
+# 4. Configurar variables de entorno
+cp .env.example .env
+
+# 5. Iniciar servidor de desarrollo
 npm run dev
+```
+
+### 🐳 Instalación con Docker
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/tu-usuario/recruiter-app.git
+
+# 2. Navegar al proyecto
+cd recruiter-app
+
+# 3. Configurar variables de entorno
+cp .env.example .env
+
+# 4. Ejecutar en producción
+docker-compose up -d
+
+# 5. Ejecutar en desarrollo (con hot reload)
+docker-compose --profile dev up dev
 ```
 
 ### 🔧 Variables de Entorno
@@ -216,6 +244,12 @@ npm run type-check   # Verificación TypeScript
 npm test             # Ejecutar tests
 npm run test:watch    # Tests en modo watch
 npm run test:coverage # Tests con cobertura
+
+# 🐳 Docker
+docker-compose up -d                    # Producción
+docker-compose --profile dev up dev     # Desarrollo
+docker-compose logs -f                  # Ver logs
+docker-compose down                     # Detener
 ```
 
 ## ⚙️ Configuración
@@ -296,7 +330,22 @@ export const Component: React.FC<ComponentProps> = ({ prop }) => {
 
 ## 🚀 Despliegue
 
-### 📦 Build de Producción
+### � Despliegue con Docker
+```bash
+# Producción
+docker-compose up -d
+
+# Desarrollo con hot reload
+docker-compose --profile dev up dev
+
+# Ver logs
+docker-compose logs -f
+
+# Detener servicios
+docker-compose down
+```
+
+### �� Build de Producción
 ```bash
 # Crear build optimizado
 npm run build
@@ -304,7 +353,7 @@ npm run build
 # Resultado en dist/
 # - 🗜️ Archivos minificados y comprimidos
 # - ⚡ Code splitting automático
-# 🔒 Hash de archivos para cache
+# - 🔒 Hash de archivos para cache
 ```
 
 ### 🌐 Despliegue Estático
@@ -316,6 +365,18 @@ npm run preview
 # - 📤 Subir carpeta dist/
 # - 🔄 Configurar rewrites para SPA
 # - 🔐 Variables de entorno en plataforma
+```
+
+### 🏭 Despliegue en Servidores
+```bash
+# Construir imagen Docker
+docker build -t recruiter-app:latest .
+
+# Ejecutar en servidor
+docker run -d -p 3000:80 --name recruiter-app recruiter-app:latest
+
+# Con Docker Registry
+docker push tu-registry/recruiter-app:latest
 ```
 
 ### 🔐 Variables de Entorno de Producción

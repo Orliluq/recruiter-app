@@ -1,0 +1,22 @@
+# Dockerfile para entorno de desarrollo
+FROM node:20-alpine AS development
+
+WORKDIR /app
+
+# Instalar dependencias necesarias para desarrollo
+RUN apk add --no-cache curl
+
+# Copiar archivos de configuración del package manager
+COPY package.json package-lock.json* bun.lockb* ./
+
+# Instalar todas las dependencias (incluyendo devDependencies)
+RUN npm install
+
+# Copiar código fuente
+COPY . .
+
+# Exponer puerto (debe coincidir con vite.config.ts)
+EXPOSE 8080
+
+# Comando para iniciar el servidor de desarrollo
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

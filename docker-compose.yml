@@ -1,0 +1,52 @@
+services:
+  # Servicio de la aplicación React
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: recruiter-app
+    ports:
+      - "3000:80"  # Mapear puerto 3000 del host al puerto 80 del contenedor
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - recruiter-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Servicio de desarrollo (opcional)
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: development
+    container_name: recruiter-app-dev
+    ports:
+      - "8080:8080"  # Mismo puerto que en vite.config.ts
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    networks:
+      - recruiter-network
+    profiles:
+      - dev  # Solo se inicia con --profile dev
+
+networks:
+  recruiter-network:
+    driver: bridge
+
+volumes:
+  node_modules:

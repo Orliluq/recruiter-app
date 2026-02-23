@@ -1,0 +1,62 @@
+# Dependencias
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+bun.lockb
+
+# Archivos de construcción
+dist
+build
+.next
+out
+
+# Archivos de entorno (se copiarán manualmente si es necesario)
+.env.local
+.env.*.local
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Git
+.git
+.gitignore
+
+# Archivos de IDE y editores
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Archivos de testing
+coverage
+.nyc_output
+
+# Documentación
+README.md
+*.md
+
+# Logs
+logs
+*.log
+
+# Archivos temporales
+.tmp
+.temp
+
+# Configuración de herramientas
+.eslintcache
+.stylelintcache
+
+# Archivos de Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Otros archivos no necesarios
+.github
+.gitlab-ci.yml
+.travis.yml
