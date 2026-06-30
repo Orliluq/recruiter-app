@@ -9,20 +9,27 @@ export default function Pipeline() {
   const [draggedCandidate, setDraggedCandidate] = useState<any>(null);
 
   const handleStageChange = (candidateId: string, newStage: string) => {
-    setCandidates(prev => 
-      prev.map(candidate => 
-        candidate.id === candidateId 
-          ? { ...candidate, stage: newStage as Stage, updatedAt: new Date().toISOString() }
-          : candidate
-      )
+    setCandidates((prev) =>
+      prev.map((candidate) =>
+        candidate.id === candidateId
+          ? {
+              ...candidate,
+              stage: newStage as Stage,
+              updatedAt: new Date().toISOString(),
+            }
+          : candidate,
+      ),
     );
   };
 
   // Group candidates by stage
-  const candidatesByStage = PIPELINE_STAGES.reduce((acc, stage) => {
-    acc[stage] = candidates.filter(candidate => candidate.stage === stage);
-    return acc;
-  }, {} as Record<Stage, Candidate[]>);
+  const candidatesByStage = PIPELINE_STAGES.reduce(
+    (acc, stage) => {
+      acc[stage] = candidates.filter((candidate) => candidate.stage === stage);
+      return acc;
+    },
+    {} as Record<Stage, Candidate[]>,
+  );
 
   return (
     <AppLayout>
@@ -30,13 +37,14 @@ export default function Pipeline() {
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Pipeline</h1>
           <p className="text-muted-foreground text-sm mt-1">
-            Arrastra los candidatos para cambiar su etapa • Desplaza horizontalmente para ver todo el tablero
+            Arrastra los candidatos para cambiar su etapa • Desplaza
+            horizontalmente para ver todo el tablero
           </p>
         </div>
 
         {/* Kanban Board - Horizontal Scroll */}
         <div className="overflow-x-auto pb-4">
-          <div className="flex gap-4 h-[calc(100vh-140px)] min-w-max px-4">
+          <div className="flex gap-4 min-w-max px-4 py-2 md:h-[calc(100vh-140px)]">
             {PIPELINE_STAGES.map((stage) => (
               <PipelineStage
                 key={stage}
